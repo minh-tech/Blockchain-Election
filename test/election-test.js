@@ -49,6 +49,7 @@ contract("Election", (accounts) => {
     it("throws an exception for invalid candidates", async () => {
       try {
         await election.vote(99, { from: accounts[1] });
+        assert.fail();
       } catch(error) {
           assert(error.message.indexOf('revert') >= 0, "error message must contain revert");
       }
@@ -72,6 +73,7 @@ contract("Election", (accounts) => {
       // Try to vote again
       try {
         await election.vote(candidateId, { from: accounts[1] });
+        assert.fail();
       } catch(error) {
         assert(error.message.indexOf('revert') >= 0, "error message must contain revert");
       }
